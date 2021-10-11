@@ -21,11 +21,11 @@ ALTER TABLE Users ADD FOREIGN KEY (Parent) REFERENCES Users (ID);
 
 # Query for Select User and ParentName
 SELECT
-	child.ID,
-	child.UserName,
-	COALESCE(parent.UserName, NULL) as 'ParentName'
+  child.ID,
+  child.UserName,
+  COALESCE(parent.UserName, NULL) as 'ParentName'
 FROM Users child
-     LEFT JOIN Users parent ON (child.Parent = parent.ID);
+  LEFT JOIN Users parent ON (child.Parent = parent.ID);
 ```
 
 ## 02_OMDB_API
@@ -38,25 +38,25 @@ Reoisitory: https://github.com/hrz8/go-seeding-omdb
 
 ```go
 func findFirstStringInBracket(str string) string {
-	if len(str) > 0 {
-		indexFirstBracketFound := strings.Index(str, "(")
-		if indexFirstBracketFound >= 0 {
-			runes := []rune(str)
-			wordsAfterFirstBracket := string(runes[indexFirstBracketFound:len(str)])
-			indexClosingBracketFound := strings.Index(wordsAfterFirstBracket, ")")
-			if indexClosingBracketFound >= 0 {
-				runes := []rune(wordsAfterFirstBracket)
-				return string(runes[1 : indexClosingBracketFound-1])
-			} else {
-				return ""
-			}
-		} else {
-			return ""
-		}
-	} else {
-		return ""
-	}
-	return ""
+  if len(str) > 0 {
+    indexFirstBracketFound := strings.Index(str, "(")
+    if indexFirstBracketFound >= 0 {
+      runes := []rune(str)
+      wordsAfterFirstBracket := string(runes[indexFirstBracketFound:len(str)])
+      indexClosingBracketFound := strings.Index(wordsAfterFirstBracket, ")")
+      if indexClosingBracketFound >= 0 {
+        runes := []rune(wordsAfterFirstBracket)
+        return string(runes[1 : indexClosingBracketFound-1])
+      } else {
+        return ""
+      }
+    } else {
+      return ""
+    }
+  } else {
+    return ""
+  }
+  return ""
 }
 ```
 
