@@ -28,7 +28,7 @@ FROM Users child
 ## 02_OMDB-API
 > Movies Microservices Task
 
-Reoisitory: https://github.com/hrz8/go-seeding-omdb
+Repository: https://github.com/hrz8/go-seeding-omdb
 
 ## 03_Refactor
 > Refactor the function
