@@ -6,27 +6,21 @@ import (
 )
 
 func main() {
-	fmt.Println("Hello world")
+	res := FindFirstStringInBracket("Nuruddin (Zayn Malik)")
+	fmt.Println(res)
 }
 
-func findFirstStringInBracket(str string) string {
-	if len(str) > 0 {
-		indexFirstBracketFound := strings.Index(str, "(")
-		if indexFirstBracketFound >= 0 {
-			runes := []rune(str)
-			wordsAfterFirstBracket := string(runes[indexFirstBracketFound:len(str)])
-			indexClosingBracketFound := strings.Index(wordsAfterFirstBracket, ")")
-			if indexClosingBracketFound >= 0 {
-				runes := []rune(wordsAfterFirstBracket)
-				return string(runes[1 : indexClosingBracketFound-1])
-			} else {
-				return ""
-			}
-		} else {
-			return ""
-		}
-	} else {
+func FindFirstStringInBracket(str string) string {
+	indexFirstBracketFound := strings.Index(str, "(")
+	if len(str) == 0 || indexFirstBracketFound < 0 {
 		return ""
 	}
-	return ""
+	strRunes := []rune(str)
+	wordsAfterFirstBracket := string(strRunes[indexFirstBracketFound:len(str)])
+	indexClosingBracketFound := strings.Index(wordsAfterFirstBracket, ")")
+	if indexClosingBracketFound < 0 {
+		return ""
+	}
+	afterBracketRunes := []rune(wordsAfterFirstBracket)
+	return strings.Split(string(afterBracketRunes[1:indexClosingBracketFound]), " ")[0]
 }

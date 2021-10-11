@@ -2,12 +2,9 @@
 
 ## What's going on here?
 - [DB Query](#01_Simple-Database-Query)
-- [OMDB API](#02_OMDB_API)
+- [OMDB API](#02_OMDB-API)
 - [Refactor](#03_Refactor)
 - [Logic](#04_Logic)
-- [Algorithmic](#05_algorithmic)
-- [Bonus: Parallel and Concurrency](#06_parallel-concurrency)
-- [Bonus: Rounded Matrix Path](#07_rounding-path)
 
 ## 01_Simple-Database-Query
 ```sql
@@ -28,7 +25,7 @@ FROM Users child
   LEFT JOIN Users parent ON (child.Parent = parent.ID);
 ```
 
-## 02_OMDB_API
+## 02_OMDB-API
 > Movies Microservices Task
 
 Reoisitory: https://github.com/hrz8/go-seeding-omdb
@@ -37,27 +34,26 @@ Reoisitory: https://github.com/hrz8/go-seeding-omdb
 > Refactor the function
 
 ```go
-func findFirstStringInBracket(str string) string {
-  if len(str) > 0 {
-    indexFirstBracketFound := strings.Index(str, "(")
-    if indexFirstBracketFound >= 0 {
-      runes := []rune(str)
-      wordsAfterFirstBracket := string(runes[indexFirstBracketFound:len(str)])
-      indexClosingBracketFound := strings.Index(wordsAfterFirstBracket, ")")
-      if indexClosingBracketFound >= 0 {
-        runes := []rune(wordsAfterFirstBracket)
-        return string(runes[1 : indexClosingBracketFound-1])
-      } else {
-        return ""
-      }
-    } else {
-      return ""
-    }
-  } else {
-    return ""
-  }
-  return ""
+func FindFirstStringInBracket(str string) string {
+	indexFirstBracketFound := strings.Index(str, "(")
+	if len(str) == 0 || indexFirstBracketFound < 0 {
+		return ""
+	}
+	strRunes := []rune(str)
+	wordsAfterFirstBracket := string(strRunes[indexFirstBracketFound:len(str)])
+	indexClosingBracketFound := strings.Index(wordsAfterFirstBracket, ")")
+	if indexClosingBracketFound < 0 {
+		return ""
+	}
+	afterBracketRunes := []rune(wordsAfterFirstBracket)
+	return strings.Split(string(afterBracketRunes[1:indexClosingBracketFound]), " ")[0]
 }
+```
+### Play the Game
+
+```bash
+[lets-go-bibit]$ cd 03_Refactor/
+[04_Logic]$ go test *.go
 ```
 
 ## 04_Logic

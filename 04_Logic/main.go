@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func DetermineAnagram(listOfStrings []string) *[][]string {
+func groupByAnagram(listOfStrings []string) *[][]string {
 	list := make(map[string][]string)
 	var result [][]string
 
@@ -29,6 +29,6 @@ func sortStr(k string) string {
 
 func main() {
 	list := []string{"kita", "atik", "tika", "aku", "kia", "makan", "kua"}
-	res := DetermineAnagram(list)
+	res := groupByAnagram(list)
 	fmt.Println(*res)
 }
